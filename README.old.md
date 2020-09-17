@@ -1,1 +1,0 @@
-# orama-investment-fund-page
