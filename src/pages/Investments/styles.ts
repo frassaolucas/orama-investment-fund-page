@@ -31,3 +31,35 @@ export const BannerContent = styled.div`
     line-height: 1.5;
   }
 `;
+
+export const Legends = styled.div`
+  margin: 3rem 1rem;
+
+  p {
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  ul {
+    list-style: none;
+    color: var(--color-gray);
+
+    @media (min-width: 48em) {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+
+    + li {
+      margin-top: 1rem;
+    }
+  }
+
+  svg {
+    margin-right: 1rem;
+  }
+`;

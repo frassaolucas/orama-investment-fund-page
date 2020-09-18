@@ -3,9 +3,12 @@ import { createGlobalStyle } from 'styled-components';
 export const colors = {
   colorPrimary: '#7CC33E',
   colorSecondary: '#119c9f',
+  colorTertiary: '#639d31',
 
   colorGray: '#505152',
   colorGrayLight: '#fefefe',
+
+  colorDisabled: '#9c9d9e',
 
   colorRiskOne: '#a6ecfc',
   colorRiskTwo: '#68f1dd',
@@ -25,9 +28,12 @@ export default createGlobalStyle`
   :root {
     --color-primary: ${colors.colorPrimary};
     --color-secondary: ${colors.colorSecondary};
+    --color-tertiary: ${colors.colorTertiary};
 
     --color-gray: ${colors.colorGray};
     --color-gray-light: ${colors.colorGrayLight};
+
+    --color-disable: ${colors.colorDisabled};
 
     --color-risk-one: ${colors.colorRiskOne};
     --color-risk-two: ${colors.colorRiskTwo};
