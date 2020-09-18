@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../node_modules/foundation-sites/dist/css/foundation.min.css';
+import './assets/foundation-6.6.3-custom/css/foundation.min.css';
 import GlobalStyle from './styles/global';
 
 import Investments from './pages/Investments';
