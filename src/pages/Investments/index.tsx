@@ -1,11 +1,20 @@
 import React from 'react';
 
-import { Container } from './styles';
+import BannerImg from '../../assets/banner.jpg';
+
+import Banner from '../../components/Banner';
+
+import { Container, BannerContent } from './styles';
 
 const Investments: React.FC = () => {
   return (
     <Container>
-      <h1>Investments page</h1>
+      <Banner image={BannerImg}>
+        <BannerContent>
+          <h1>Fundos de Investimento</h1>
+          <p>Conheça a nossa lista de fundos</p>
+        </BannerContent>
+      </Banner>
     </Container>
   );
 };
