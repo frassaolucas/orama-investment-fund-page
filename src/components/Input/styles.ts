@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 interface ContainerProps {
   isFocused: boolean;
+  icon: boolean;
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -17,7 +18,8 @@ export const Container = styled.div<ContainerProps>`
     border-left: 0;
     border-right: 0;
     border-bottom: 1px solid var(--color-gray);
-    padding: 1.5rem 0;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
 
     transition: border-color 0.4s;
 
@@ -45,6 +47,12 @@ export const Container = styled.div<ContainerProps>`
       props.isFocused &&
       css`
         border-color: var(--color-secondary);
+      `}
+
+    ${props =>
+      props.icon &&
+      css`
+        padding-right: 3.5rem;
       `}
   }
 

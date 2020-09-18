@@ -19,7 +19,7 @@ const Input: React.FC<InputProps> = ({ icon: Icon, children, ...rest }) => {
   }, []);
 
   return (
-    <Container isFocused={isFocused}>
+    <Container isFocused={isFocused} icon={!!Icon}>
       <input onFocus={handleInputFocus} onBlur={handleInputBlur} {...rest} />
 
       {Icon && (
