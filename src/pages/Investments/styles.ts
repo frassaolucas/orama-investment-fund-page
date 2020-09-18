@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+const Content = styled.div`
+  margin: 3rem 1rem;
+`;
+
 export const Container = styled.div``;
 
 export const BannerContent = styled.div`
@@ -32,10 +36,11 @@ export const BannerContent = styled.div`
   }
 `;
 
-export const Legends = styled.div`
+export const Legends = styled(Content)`
   margin: 3rem 1rem;
 
   p {
+    margin-bottom: 1.5rem;
     font-weight: 700;
     text-transform: uppercase;
   }
@@ -62,4 +67,9 @@ export const Legends = styled.div`
   svg {
     margin-right: 1rem;
   }
+`;
+
+export const Search = styled(Content)`
+  background: #fff;
+  border-radius: 3px;
 `;

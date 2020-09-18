@@ -4,14 +4,16 @@ import {
   MdInfoOutline,
   MdDoNotDisturbAlt,
   MdReply,
+  MdSearch,
 } from 'react-icons/md';
 
-import BannerImg from '../../assets/banner.jpg';
+import BannerImg from '../../assets/images/banner.jpg';
 
 import Banner from '../../components/Banner';
+import Input from '../../components/Input';
 
 import { colors } from '../../styles/global';
-import { Container, BannerContent, Legends } from './styles';
+import { Container, BannerContent, Legends, Search } from './styles';
 
 const Investments: React.FC = () => {
   return (
@@ -48,6 +50,12 @@ const Investments: React.FC = () => {
           </li>
         </ul>
       </Legends>
+
+      <Search>
+        <Input type="search" icon={MdSearch}>
+          Selecione o fundo para saber o horário limite de aplicação.
+        </Input>
+      </Search>
     </Container>
   );
 };
