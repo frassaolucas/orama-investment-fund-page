@@ -6,7 +6,7 @@ export const colors = {
   colorTertiary: '#639d31',
 
   colorGray: '#505152',
-  colorGrayLight: '#fefefe',
+  colorGrayLight: '#f7f8fa',
 
   colorDisabled: '#9c9d9e',
 
