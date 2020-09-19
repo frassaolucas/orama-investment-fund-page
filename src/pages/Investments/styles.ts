@@ -71,5 +71,7 @@ export const Legends = styled(Content)`
 
 export const Search = styled(Content)`
   background: #fff;
-  border-radius: 3px;
+  border-radius: var(--border-radius);
 `;
+
+export const InvestmentList = styled(Content)``;

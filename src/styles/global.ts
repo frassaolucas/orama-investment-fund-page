@@ -24,6 +24,10 @@ export const colors = {
   colorRiskTwelve: '#b51414',
 };
 
+const utils = {
+  borderRadius: '3px',
+};
+
 export default createGlobalStyle`
   :root {
     --color-primary: ${colors.colorPrimary};
@@ -47,6 +51,8 @@ export default createGlobalStyle`
     --color-risk-ten: ${colors.colorRiskTen};
     --color-risk-eleven: ${colors.colorRiskEleven};
     --color-risk-twelve: ${colors.colorRiskTwelve};
+
+    --border-radius: ${utils.borderRadius};
   }
 
   * {
