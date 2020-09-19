@@ -11,9 +11,16 @@ import BannerImg from '../../assets/images/banner.jpg';
 
 import Banner from '../../components/Banner';
 import Input from '../../components/Input';
+import InvestmentCard from '../../components/InvestmentCard';
 
 import { colors } from '../../styles/global';
-import { Container, BannerContent, Legends, Search } from './styles';
+import {
+  Container,
+  BannerContent,
+  Legends,
+  Search,
+  InvestmentList,
+} from './styles';
 
 const Investments: React.FC = () => {
   return (
@@ -56,6 +63,11 @@ const Investments: React.FC = () => {
           Selecione o fundo para saber o horário limite de aplicação.
         </Input>
       </Search>
+
+      <InvestmentList>
+        <InvestmentCard />
+        <InvestmentCard />
+      </InvestmentList>
     </Container>
   );
 };
