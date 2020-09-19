@@ -4,7 +4,9 @@ const Content = styled.div`
   margin: 3rem 1rem;
 `;
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  margin-bottom: 3rem;
+`;
 
 export const BannerContent = styled.div`
   display: flex;

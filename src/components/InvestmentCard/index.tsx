@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { MdReply } from 'react-icons/md';
 
 import RiskIndicator from '../RiskIndicator';
 import Button from '../Button';
@@ -41,7 +42,10 @@ const InvestmentCard: React.FC = () => {
 
       <CardRow>
         <Link to="/">mais detalhes</Link>
-        <Button>Aplicar</Button>
+        <Button>
+          Aplicar
+          <MdReply size={20} />
+        </Button>
       </CardRow>
     </Container>
   );

@@ -58,16 +58,22 @@ const Investments: React.FC = () => {
         </ul>
       </Legends>
 
-      <Search>
-        <Input type="search" icon={MdSearch}>
-          Selecione o fundo para saber o horário limite de aplicação.
-        </Input>
-      </Search>
+      <div className="grid-x">
+        <div className="cell medium-9">
+          <Search>
+            <Input type="search" icon={MdSearch}>
+              Selecione o fundo para saber o horário limite de aplicação.
+            </Input>
+          </Search>
 
-      <InvestmentList>
-        <InvestmentCard />
-        <InvestmentCard />
-      </InvestmentList>
+          <InvestmentList>
+            <InvestmentCard />
+            <InvestmentCard />
+          </InvestmentList>
+        </div>
+
+        <div className="cell medium-3 hide-for-medium-only">filters</div>
+      </div>
     </Container>
   );
 };
