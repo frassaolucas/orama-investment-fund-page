@@ -63,6 +63,11 @@ export const Legends = styled(Content)`
 
     + li {
       margin-top: 1rem;
+
+      @media (min-width: 48em) {
+        margin-top: 0;
+        margin-left: 1rem;
+      }
     }
   }
 

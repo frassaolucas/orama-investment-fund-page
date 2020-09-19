@@ -2,8 +2,12 @@ import React from 'react';
 
 import { Container } from './styles';
 
-const RiskIndicator: React.FC = () => {
-  return <Container />;
+interface RiskIndicatorProps {
+  styleClass?: string;
+}
+
+const RiskIndicator: React.FC<RiskIndicatorProps> = ({ styleClass }) => {
+  return <Container className={styleClass} />;
 };
 
 export default RiskIndicator;

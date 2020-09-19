@@ -89,4 +89,12 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
   }
+
+  .show-for-large-only {
+    display: none;
+
+    @media (min-width: 64em) {
+      display: block;
+    }
+  }
 `;

@@ -8,7 +8,6 @@ interface ButtonProps {
 }
 
 export const Container = styled.button<ButtonProps>`
-  width: 100%;
   height: 4rem;
 
   border-radius: var(--border-radius);

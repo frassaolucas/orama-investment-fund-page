@@ -11,13 +11,11 @@ const InvestmentCard: React.FC = () => {
   return (
     <Container>
       <CardRow>
-        <span>Versa Long Biased FIM</span>
-
-        <RiskIndicator />
-      </CardRow>
-
-      <CardRow>
-        <p>Multimercado | Long And Short - Direcional</p>
+        <div>
+          <span>Versa Long Biased FIM</span>
+          <p>Multimercado | Long And Short - Direcional</p>
+        </div>
+        <RiskIndicator styleClass="risk-indicator" />
       </CardRow>
 
       <CardRow>
@@ -43,7 +41,7 @@ const InvestmentCard: React.FC = () => {
       <CardRow>
         <Link to="/">mais detalhes</Link>
         <Button>
-          Aplicar
+          <span>Aplicar</span>
           <MdReply size={20} />
         </Button>
       </CardRow>

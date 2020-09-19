@@ -32,34 +32,38 @@ const Investments: React.FC = () => {
         </BannerContent>
       </Banner>
 
-      <Legends>
-        <p>Legenda</p>
+      <div className="grid-x">
+        <div className="cell large-9">
+          <Legends>
+            <p>Legenda</p>
 
-        <ul>
-          <li>
-            <MdStars size={20} color={colors.colorTertiary} />
-            Fundo para investidor qualificado
-          </li>
+            <ul>
+              <li>
+                <MdStars size={20} color={colors.colorTertiary} />
+                Fundo para investidor qualificado
+              </li>
 
-          <li>
-            <MdInfoOutline size={20} color={colors.colorGray} />
-            Entenda o resgate deste fundo
-          </li>
+              <li>
+                <MdInfoOutline size={20} color={colors.colorGray} />
+                Entenda o resgate deste fundo
+              </li>
 
-          <li>
-            <MdDoNotDisturbAlt size={20} color={colors.colorDisabled} />
-            Fundo fechado para aplicação
-          </li>
+              <li>
+                <MdDoNotDisturbAlt size={20} color={colors.colorDisabled} />
+                Fundo fechado para aplicação
+              </li>
 
-          <li>
-            <MdReply size={20} color={colors.colorSecondary} />
-            Aplicar neste fundo
-          </li>
-        </ul>
-      </Legends>
+              <li>
+                <MdReply size={20} color={colors.colorSecondary} />
+                Aplicar neste fundo
+              </li>
+            </ul>
+          </Legends>
+        </div>
+      </div>
 
       <div className="grid-x">
-        <div className="cell medium-9">
+        <div className="cell large-9">
           <Search>
             <Input type="search" icon={MdSearch}>
               Selecione o fundo para saber o horário limite de aplicação.
@@ -72,7 +76,7 @@ const Investments: React.FC = () => {
           </InvestmentList>
         </div>
 
-        <div className="cell medium-3 hide-for-medium-only">filters</div>
+        <div className="cell large-3 show-for-large-only">filters</div>
       </div>
     </Container>
   );
