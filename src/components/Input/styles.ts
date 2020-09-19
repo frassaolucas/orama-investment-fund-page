@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 interface ContainerProps {
   isFocused: boolean;
-  icon: boolean;
+  inputIcon: boolean;
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -50,7 +50,7 @@ export const Container = styled.div<ContainerProps>`
       `}
 
     ${props =>
-      props.icon &&
+      props.inputIcon &&
       css`
         padding-right: 3.5rem;
       `}
