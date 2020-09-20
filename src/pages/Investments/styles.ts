@@ -6,6 +6,12 @@ const Content = styled.div`
 
 export const Container = styled.div`
   margin-bottom: 3rem;
+
+  .no-result {
+    padding: 3rem;
+    font-weight: bold;
+    text-align: center;
+  }
 `;
 
 export const BannerContent = styled.div`

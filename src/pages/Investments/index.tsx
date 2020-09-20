@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   MdStars,
   MdInfoOutline,
@@ -8,12 +8,13 @@ import {
 } from 'react-icons/md';
 
 import api from '../../services/api';
+import isEqual from '../../utils/isEqual';
 
 import BannerImg from '../../assets/images/banner.jpg';
 
 import Banner from '../../components/Banner';
 import Card from '../../components/Card';
-import Input from '../../components/Input';
+import SearchInput from '../../components/SearchInput';
 import InvestmentCard, {
   InvestmentInterface,
 } from '../../components/InvestmentCard';
@@ -31,13 +32,33 @@ import {
 } from './styles';
 
 const Investments: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [investments, setInvestments] = useState([{} as InvestmentInterface]);
+  const [filteredInvestment, setFilteredInvestment] = useState([
+    {} as InvestmentInterface,
+  ]);
 
   useEffect(() => {
     api.get('/').then(response => {
       setInvestments(response.data);
+      setFilteredInvestment(response.data);
+      setIsLoading(false);
     });
   }, []);
+
+  const getFilteredItems = useCallback(
+    (searchedValue: string) => {
+      setIsLoading(true);
+
+      const filteredItems = investments.filter(item =>
+        isEqual(item.simple_name, searchedValue),
+      );
+
+      setFilteredInvestment(filteredItems);
+      setIsLoading(false);
+    },
+    [investments],
+  );
 
   return (
     <Container>
@@ -81,17 +102,28 @@ const Investments: React.FC = () => {
       <div className="grid-x grid-padding-x">
         <div className="cell large-9">
           <Card>
-            <Input type="search" icon={MdSearch}>
+            <SearchInput
+              type="search"
+              search={event => getFilteredItems(event.target.value)}
+              icon={MdSearch}
+            >
               Selecione o fundo para saber o horário limite de aplicação.
-            </Input>
+            </SearchInput>
           </Card>
 
           <div className="investment-list">
-            {investments.map((investment: InvestmentInterface) => (
-              <Card key={String(investment.id)}>
-                <InvestmentCard investmentData={investment} />
+            {!isLoading && filteredInvestment.length === 0 && (
+              <Card>
+                <div className="no-result">Nenhum resultado encontrado</div>
               </Card>
-            ))}
+            )}
+
+            {!isLoading &&
+              filteredInvestment.map((investment: InvestmentInterface) => (
+                <Card key={String(investment.id)}>
+                  <InvestmentCard investmentData={investment} />
+                </Card>
+              ))}
           </div>
         </div>
 

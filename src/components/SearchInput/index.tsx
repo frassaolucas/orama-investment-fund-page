@@ -4,10 +4,16 @@ import { IconBaseProps } from 'react-icons';
 import { Container } from './styles';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  search: (event: React.ChangeEvent<HTMLInputElement>) => void;
   icon?: React.ComponentType<IconBaseProps>;
 }
 
-const Input: React.FC<InputProps> = ({ icon: Icon, children, ...rest }) => {
+const Input: React.FC<InputProps> = ({
+  search,
+  icon: Icon,
+  children,
+  ...rest
+}) => {
   const [isFocused, setIsFocused] = useState(false);
 
   const handleInputFocus = useCallback(() => {
@@ -20,13 +26,14 @@ const Input: React.FC<InputProps> = ({ icon: Icon, children, ...rest }) => {
 
   return (
     <Container isFocused={isFocused} inputIcon={!!Icon}>
-      <input onFocus={handleInputFocus} onBlur={handleInputBlur} {...rest} />
+      <input
+        onChange={search}
+        onFocus={handleInputFocus}
+        onBlur={handleInputBlur}
+        {...rest}
+      />
 
-      {Icon && (
-        <button type="button">
-          <Icon size={27} />
-        </button>
-      )}
+      {Icon && <Icon size={27} />}
 
       <span>{children}</span>
     </Container>
