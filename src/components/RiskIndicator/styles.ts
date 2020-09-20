@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+interface ContainerProps {
+  riskColor: string;
+}
+
+export const Container = styled.div<ContainerProps>`
   width: 1.4rem;
   height: 1.4rem;
   margin-left: 1rem;
 
-  background: var(--color-risk-one);
+  background: ${props => props.riskColor};
   border-radius: var(--border-radius);
 `;

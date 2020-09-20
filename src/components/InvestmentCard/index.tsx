@@ -5,6 +5,8 @@ import { MdReply } from 'react-icons/md';
 import RiskIndicator from '../RiskIndicator';
 import Button from '../Button';
 
+import getRiskColor from '../../utils/getRiskColor';
+
 import { Container, CardRow } from './styles';
 
 export interface InvestmentInterface {
@@ -15,6 +17,9 @@ export interface InvestmentInterface {
     fund_class: string;
     fund_main_strategy: {
       name: string;
+    };
+    fund_risk_profile: {
+      score_range_order: number;
     };
   };
   quota_date: string;
@@ -45,7 +50,12 @@ const InvestmentCard: React.FC<InvestmentCardProps> = ({ investmentData }) => {
             {investmentData.specification?.fund_class}
           </p>
         </div>
-        <RiskIndicator styleClass="risk-indicator" />
+        <RiskIndicator
+          riskColor={getRiskColor(
+            investmentData.specification?.fund_risk_profile?.score_range_order,
+          )}
+          styleClass="risk-indicator"
+        />
       </CardRow>
 
       <CardRow>
