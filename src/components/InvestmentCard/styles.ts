@@ -6,17 +6,16 @@ import { colors } from '../../styles/global';
 export const Container = styled.div`
   padding: 2.5rem 1.5rem;
 
-  background: #fff;
-  border-radius: var(--border-radius);
-
   @media (min-width: 64em) {
     display: flex;
     justify-content: space-between;
     padding: 0;
   }
 
-  & + div {
-    margin-top: 1rem;
+  .card-header {
+    @media (min-width: 64em) {
+      flex: 1;
+    }
   }
 
   .risk-indicator {
@@ -31,11 +30,19 @@ export const Container = styled.div`
 
   p {
     font-size: 1.2rem;
+
+    @media (min-width: 64em) {
+      font-size: 1.1rem;
+    }
   }
 
   span {
     &:first-child {
       font-weight: bold;
+
+      @media (min-width: 64em) {
+        font-weight: normal;
+      }
     }
   }
 
@@ -77,6 +84,14 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
 
+    &:hover {
+      svg {
+        @media (min-width: 64em) {
+          color: #fff;
+        }
+      }
+    }
+
     @media (min-width: 64em) {
       background: transparent;
       border: 0;
@@ -100,7 +115,7 @@ export const Container = styled.div`
 `;
 
 export const CardRow = styled.div`
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -111,14 +126,22 @@ export const CardRow = styled.div`
   }
 
   &:first-child {
+    flex: 3;
+
     @media (min-width: 64em) {
       flex-direction: row-reverse;
+      justify-content: flex-end;
+      font-size: 1.2rem;
     }
   }
 
   &:not(:first-child) {
+    flex: 1;
+
     @media (min-width: 64em) {
+      justify-content: center;
       margin: 1.5rem 0 1.5rem 1.5rem;
+      text-align: center;
 
       span {
         &:first-child {

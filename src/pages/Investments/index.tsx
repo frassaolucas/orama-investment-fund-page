@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   MdStars,
   MdInfoOutline,
@@ -7,22 +7,38 @@ import {
   MdSearch,
 } from 'react-icons/md';
 
+import api from '../../services/api';
+
 import BannerImg from '../../assets/images/banner.jpg';
 
 import Banner from '../../components/Banner';
+import Card from '../../components/Card';
 import Input from '../../components/Input';
-import InvestmentCard from '../../components/InvestmentCard';
+import InvestmentCard, {
+  InvestmentInterface,
+} from '../../components/InvestmentCard';
 
 import { colors } from '../../styles/global';
 import {
   Container,
   BannerContent,
   Legends,
-  Search,
-  InvestmentList,
+  MinimumApplicationFilter,
+  RiskyFundProfileFilter,
+  RedeemTimeFilter,
+  StrategyFilter,
+  ManagersFilter,
 } from './styles';
 
 const Investments: React.FC = () => {
+  const [investments, setInvestments] = useState([{} as InvestmentInterface]);
+
+  useEffect(() => {
+    api.get('/').then(response => {
+      setInvestments(response.data);
+    });
+  }, []);
+
   return (
     <Container>
       <Banner image={BannerImg}>
@@ -62,21 +78,44 @@ const Investments: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid-x">
+      <div className="grid-x grid-padding-x">
         <div className="cell large-9">
-          <Search>
+          <Card>
             <Input type="search" icon={MdSearch}>
               Selecione o fundo para saber o horário limite de aplicação.
             </Input>
-          </Search>
+          </Card>
 
-          <InvestmentList>
-            <InvestmentCard />
-            <InvestmentCard />
-          </InvestmentList>
+          <div className="investment-list">
+            {investments.map((investment: InvestmentInterface) => (
+              <Card key={String(investment.id)}>
+                <InvestmentCard investmentData={investment} />
+              </Card>
+            ))}
+          </div>
         </div>
 
-        <div className="cell large-3 show-for-large-only">filters</div>
+        <div className="cell large-3 show-for-large-only">
+          <Card>
+            <MinimumApplicationFilter>
+              Filter Aplicação mínima
+            </MinimumApplicationFilter>
+          </Card>
+
+          <Card>
+            <RiskyFundProfileFilter>
+              Filtro Perfil de risco de fundo
+            </RiskyFundProfileFilter>
+          </Card>
+
+          <Card>
+            <RedeemTimeFilter>Filtro Prazo de resgate</RedeemTimeFilter>
+          </Card>
+
+          <StrategyFilter>Filtrar por estratégias</StrategyFilter>
+
+          <ManagersFilter>Filtrar por gestores</ManagersFilter>
+        </div>
       </div>
     </Container>
   );

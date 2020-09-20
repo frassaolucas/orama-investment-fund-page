@@ -76,9 +76,20 @@ export const Legends = styled(Content)`
   }
 `;
 
-export const Search = styled(Content)`
-  background: #fff;
-  border-radius: var(--border-radius);
+export const MinimumApplicationFilter = styled.div`
+  padding: 2rem 1rem;
 `;
 
-export const InvestmentList = styled(Content)``;
+export const RiskyFundProfileFilter = styled.div`
+  padding: 2rem 1rem;
+`;
+
+export const RedeemTimeFilter = styled.div`
+  padding: 2rem 1rem;
+`;
+
+export const StrategyFilter = styled.div``;
+
+export const ManagersFilter = styled.div`
+  margin-top: 1rem;
+`;
