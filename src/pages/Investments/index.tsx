@@ -24,6 +24,7 @@ import {
   Container,
   BannerContent,
   Legends,
+  InvestmentColumnHeader,
   MinimumApplicationFilter,
   RiskyFundProfileFilter,
   RedeemTimeFilter,
@@ -111,20 +112,44 @@ const Investments: React.FC = () => {
             </SearchInput>
           </Card>
 
-          <div className="investment-list">
-            {!isLoading && filteredInvestment.length === 0 && (
+          <Card>
+            <InvestmentColumnHeader className="show-for-large-only">
+              <div className="upper-row">
+                <div>Fundo</div>
+                <div>Data da cota</div>
+                <div>Rentabilidade(%)</div>
+                <div>Aplicação mínima</div>
+                <div>Cotização</div>
+                <div>Aplicar</div>
+              </div>
+
+              <div className="lower-row">
+                <div />
+                <div>Mês</div>
+                <div>{new Date().getFullYear()}</div>
+                <div>12M</div>
+                <div />
+              </div>
+            </InvestmentColumnHeader>
+          </Card>
+
+          {!isLoading && filteredInvestment.length === 0 && (
+            <div className="investment-list">
               <Card>
                 <div className="no-result">Nenhum resultado encontrado</div>
               </Card>
-            )}
+            </div>
+          )}
 
-            {!isLoading &&
-              filteredInvestment.map((investment: InvestmentInterface) => (
+          {!isLoading && (
+            <div className="investment-list">
+              {filteredInvestment.map((investment: InvestmentInterface) => (
                 <Card key={String(investment.id)}>
                   <InvestmentCard investmentData={investment} />
                 </Card>
               ))}
-          </div>
+            </div>
+          )}
         </div>
 
         <div className="cell large-3 show-for-large-only">

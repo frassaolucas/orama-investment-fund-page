@@ -82,6 +82,66 @@ export const Legends = styled(Content)`
   }
 `;
 
+export const InvestmentColumnHeader = styled.div`
+  font-weight: 700;
+
+  .upper-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+
+    div {
+      &:first-child {
+        flex: 3;
+        max-width: 21.8rem;
+        margin: 1.5rem 0 1.5rem 2.2rem;
+      }
+
+      &:not(:first-child) {
+        flex: 1;
+        margin: 1.5rem 0 1.5rem 1.5rem;
+        text-align: center;
+      }
+
+      &:nth-child(3) {
+        flex: 3;
+        display: flex;
+        align-items: center;
+
+        &:before {
+          content: '';
+          flex: 1;
+          height: 1px;
+          margin-right: 0.5rem;
+          background: var(--color-gray);
+        }
+      }
+    }
+  }
+
+  .lower-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+
+    div {
+      flex: 1;
+      margin-bottom: 1.5rem;
+      text-align: center;
+
+      &:first-child {
+        flex: 3.5;
+      }
+
+      &:last-child {
+        flex: 3;
+      }
+    }
+  }
+`;
+
 export const MinimumApplicationFilter = styled.div`
   padding: 2rem 1rem;
 `;
