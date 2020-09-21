@@ -90,11 +90,15 @@ export default createGlobalStyle`
     cursor: pointer;
   }
 
+  .grid-container {
+    max-width: 120rem;
+  }
+
   .show-for-large-only {
     display: none;
 
     @media (min-width: 64em) {
-      display: block;
+      display: flex;
     }
   }
 `;

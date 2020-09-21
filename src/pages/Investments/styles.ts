@@ -12,6 +12,11 @@ export const Container = styled.div`
     font-weight: bold;
     text-align: center;
   }
+
+  .filters {
+    flex: 1;
+    flex-direction: column;
+  }
 `;
 
 export const BannerContent = styled.div`
@@ -45,7 +50,7 @@ export const BannerContent = styled.div`
 `;
 
 export const Legends = styled(Content)`
-  margin: 3rem 1rem;
+  margin: 3rem 0;
 
   p {
     margin-bottom: 1.5rem;
@@ -83,6 +88,7 @@ export const Legends = styled(Content)`
 `;
 
 export const InvestmentColumnHeader = styled.div`
+  flex-direction: column;
   font-weight: 700;
 
   .upper-row {
