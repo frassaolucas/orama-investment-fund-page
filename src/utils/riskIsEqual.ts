@@ -3,7 +3,7 @@ const riskIsEqual = (defaultValue: number, searchingValue: number): boolean => {
     return true;
   }
 
-  return defaultValue === searchingValue;
+  return defaultValue <= searchingValue;
 };
 
 export default riskIsEqual;
