@@ -35,6 +35,10 @@ const Investments: React.FC = () => {
   const [filteredInvestment, setFilteredInvestment] = useState([
     {} as InvestmentInterface,
   ]);
+  const [searchFields, setSearchFields] = useState({
+    searchedInputs: '',
+    risk: 0,
+  });
 
   const time = useRef(0);
 
@@ -46,23 +50,48 @@ const Investments: React.FC = () => {
     });
   }, []);
 
-  const searchInvestment = useCallback(
-    (searchedValue: string) => {
-      clearTimeout(time.current);
+  const applyFilter = useCallback(() => {
+    let filteredItems = investments;
 
-      time.current = setTimeout(() => {
-        setIsLoading(true);
+    console.log(filteredItems);
+    console.log(searchFields);
 
-        const filteredItems = investments.filter(item =>
-          stringIsEqual(item.simple_name, searchedValue),
-        );
+    if (searchFields.searchedInputs.length > 0) {
+      filteredItems = filteredItems.filter(item =>
+        stringIsEqual(item.simple_name, searchFields.searchedInputs),
+      );
+      console.log('filtrou busca');
+    }
 
-        setFilteredInvestment(filteredItems);
-        setIsLoading(false);
-      }, [500]);
-    },
-    [investments],
-  );
+    if (searchFields.risk !== 0) {
+      filteredItems = filteredItems.filter(item => {
+        const risk = item.specification?.fund_risk_profile?.score_range_order;
+        return riskIsEqual(risk, searchFields.risk);
+      });
+      console.log('filtrou risk');
+    }
+
+    console.log(`depois:`);
+    console.log(filteredItems);
+
+    setFilteredInvestment(filteredItems);
+  }, [investments, searchFields]);
+
+  useEffect(() => {
+    applyFilter();
+  }, [searchFields]);
+
+  const searchInvestment = (searchedValue: string) => {
+    clearTimeout(time.current);
+
+    time.current = setTimeout(() => {
+      setIsLoading(true);
+
+      setSearchFields({ ...searchFields, searchedInputs: searchedValue });
+
+      setIsLoading(false);
+    }, 500);
+  };
 
   const filterRisk = useCallback(
     (searchedValue: string) => {
@@ -73,16 +102,12 @@ const Investments: React.FC = () => {
       time.current = setTimeout(() => {
         setIsLoading(true);
 
-        const filteredItems = investments.filter(item => {
-          const risk = item.specification?.fund_risk_profile?.score_range_order;
-          return riskIsEqual(risk, searchedRisk);
-        });
+        setSearchFields({ ...searchFields, risk: searchedRisk });
 
-        setFilteredInvestment(filteredItems);
         setIsLoading(false);
       }, [500]);
     },
-    [investments],
+    [searchFields],
   );
 
   return (
