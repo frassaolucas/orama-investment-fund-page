@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   MdStars,
   MdInfoOutline,
@@ -33,6 +33,8 @@ import {
 } from './styles';
 
 const Investments: React.FC = () => {
+  const time = useRef(0);
+
   const [isLoading, setIsLoading] = useState(true);
   const [investments, setInvestments] = useState([{} as InvestmentInterface]);
   const [filteredInvestment, setFilteredInvestment] = useState([
@@ -49,14 +51,18 @@ const Investments: React.FC = () => {
 
   const getFilteredItems = useCallback(
     (searchedValue: string) => {
-      setIsLoading(true);
+      clearTimeout(time.current);
 
-      const filteredItems = investments.filter(item =>
-        isEqual(item.simple_name, searchedValue),
-      );
+      time.current = setTimeout(() => {
+        setIsLoading(true);
 
-      setFilteredInvestment(filteredItems);
-      setIsLoading(false);
+        const filteredItems = investments.filter(item =>
+          isEqual(item.simple_name, searchedValue),
+        );
+
+        setFilteredInvestment(filteredItems);
+        setIsLoading(false);
+      }, [500]);
     },
     [investments],
   );
