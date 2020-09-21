@@ -79,7 +79,7 @@ const Investments: React.FC = () => {
 
   useEffect(() => {
     applyFilter();
-  }, [searchFields]);
+  }, [searchFields, applyFilter]);
 
   const searchInvestment = (searchedValue: string) => {
     clearTimeout(time.current);
