@@ -34,7 +34,7 @@ Frontend Developer challenge proposed by Órama to clone a public page of their 
   $ cd orama-investment-fund-page
 ```
 
-**2. Intall dependencies**
+**2. Install dependencies**
 
 ```sh
   $ npm install
