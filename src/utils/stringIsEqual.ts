@@ -1,4 +1,7 @@
-const isEqual = (defaultValue: string, searchingValue: string): boolean => {
+const stringIsEqual = (
+  defaultValue: string,
+  searchingValue: string,
+): boolean => {
   if (!searchingValue.length) {
     return true;
   }
@@ -8,4 +11,4 @@ const isEqual = (defaultValue: string, searchingValue: string): boolean => {
   return !!defaultValue.match(searchingValueToRegExp)?.length;
 };
 
-export default isEqual;
+export default stringIsEqual;

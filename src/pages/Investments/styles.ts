@@ -148,20 +148,19 @@ export const InvestmentColumnHeader = styled.div`
   }
 `;
 
-export const MinimumApplicationFilter = styled.div`
+export const RiskProfile = styled.div`
   padding: 2rem 1rem;
-`;
 
-export const RiskyFundProfileFilter = styled.div`
-  padding: 2rem 1rem;
-`;
+  p {
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-align: center;
+  }
 
-export const RedeemTimeFilter = styled.div`
-  padding: 2rem 1rem;
-`;
-
-export const StrategyFilter = styled.div``;
-
-export const ManagersFilter = styled.div`
-  margin-top: 1rem;
+  select {
+    width: 100%;
+    padding: 0.5rem 1.5rem;
+    border-color: var(--color-gray);
+    color: var(--color-gray);
+  }
 `;

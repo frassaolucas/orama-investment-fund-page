@@ -8,7 +8,8 @@ import {
 } from 'react-icons/md';
 
 import api from '../../services/api';
-import isEqual from '../../utils/isEqual';
+import stringIsEqual from '../../utils/stringIsEqual';
+import riskIsEqual from '../../utils/riskIsEqual';
 
 import BannerImg from '../../assets/images/banner.jpg';
 
@@ -19,28 +20,23 @@ import InvestmentCard, {
   InvestmentInterface,
 } from '../../components/InvestmentCard';
 
-import 'rsuite/dist/styles/rsuite-default.css';
 import { colors } from '../../styles/global';
 import {
   Container,
   BannerContent,
   Legends,
   InvestmentColumnHeader,
-  MinimumApplicationFilter,
-  RiskyFundProfileFilter,
-  RedeemTimeFilter,
-  StrategyFilter,
-  ManagersFilter,
+  RiskProfile,
 } from './styles';
 
 const Investments: React.FC = () => {
-  const time = useRef(0);
-
   const [isLoading, setIsLoading] = useState(true);
   const [investments, setInvestments] = useState([{} as InvestmentInterface]);
   const [filteredInvestment, setFilteredInvestment] = useState([
     {} as InvestmentInterface,
   ]);
+
+  const time = useRef(0);
 
   useEffect(() => {
     api.get('/').then(response => {
@@ -50,7 +46,7 @@ const Investments: React.FC = () => {
     });
   }, []);
 
-  const getFilteredItems = useCallback(
+  const searchInvestment = useCallback(
     (searchedValue: string) => {
       clearTimeout(time.current);
 
@@ -58,8 +54,29 @@ const Investments: React.FC = () => {
         setIsLoading(true);
 
         const filteredItems = investments.filter(item =>
-          isEqual(item.simple_name, searchedValue),
+          stringIsEqual(item.simple_name, searchedValue),
         );
+
+        setFilteredInvestment(filteredItems);
+        setIsLoading(false);
+      }, [500]);
+    },
+    [investments],
+  );
+
+  const filterRisk = useCallback(
+    (searchedValue: string) => {
+      clearTimeout(time.current);
+
+      const searchedRisk = Number(searchedValue);
+
+      time.current = setTimeout(() => {
+        setIsLoading(true);
+
+        const filteredItems = investments.filter(item => {
+          const risk = item.specification?.fund_risk_profile?.score_range_order;
+          return riskIsEqual(risk, searchedRisk);
+        });
 
         setFilteredInvestment(filteredItems);
         setIsLoading(false);
@@ -121,7 +138,7 @@ const Investments: React.FC = () => {
             <Card>
               <SearchInput
                 type="search"
-                search={event => getFilteredItems(event.target.value)}
+                search={event => searchInvestment(event.target.value)}
                 icon={MdSearch}
               >
                 Selecione o fundo para saber o horário limite de aplicação.
@@ -171,24 +188,26 @@ const Investments: React.FC = () => {
           <div className="cell large-3 show-for-large-only">
             <div className="filters">
               <Card>
-                <MinimumApplicationFilter>
-                  Filter Aplicação mínima
-                </MinimumApplicationFilter>
+                <RiskProfile>
+                  <p>Perfil de risco de fundo</p>
+
+                  <select onChange={event => filterRisk(event.target.value)}>
+                    <option value="0">Todos</option>
+                    <option value="1">Risco 1</option>
+                    <option value="2">Risco 2</option>
+                    <option value="3">Risco 3</option>
+                    <option value="4">Risco 4</option>
+                    <option value="5">Risco 5</option>
+                    <option value="6">Risco 6</option>
+                    <option value="7">Risco 7</option>
+                    <option value="8">Risco 8</option>
+                    <option value="9">Risco 9</option>
+                    <option value="10">Risco 10</option>
+                    <option value="11">Risco 11</option>
+                    <option value="12">Risco 12</option>
+                  </select>
+                </RiskProfile>
               </Card>
-
-              <Card>
-                <RiskyFundProfileFilter>
-                  Filtro Perfil de risco de fundo
-                </RiskyFundProfileFilter>
-              </Card>
-
-              <Card>
-                <RedeemTimeFilter>Filtro Prazo de resgate</RedeemTimeFilter>
-              </Card>
-
-              <StrategyFilter>Filtrar por estratégias</StrategyFilter>
-
-              <ManagersFilter>Filtrar por gestores</ManagersFilter>
             </div>
           </div>
         </div>
