@@ -12,6 +12,8 @@
 
 Frontend Developer challenge proposed by Órama to clone a public page of their website.
 
+<a href="teste-orama.netlify.app">Live test<a/>
+
 ## :rocket: Techs
 
 - [React]
