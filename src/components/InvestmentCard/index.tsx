@@ -6,6 +6,8 @@ import RiskIndicator from '../RiskIndicator';
 import Button from '../Button';
 
 import getRiskColor from '../../utils/getRiskColor';
+import formatNumber from '../../utils/formatNumber';
+import formatDate from '../../utils/formatDate';
 
 import { Container, CardRow } from './styles';
 
@@ -60,28 +62,30 @@ const InvestmentCard: React.FC<InvestmentCardProps> = ({ investmentData }) => {
 
       <CardRow>
         <span>Data da cota:</span>
-        <span>{investmentData.quota_date}</span>
+        <span>{formatDate(investmentData.quota_date)}</span>
       </CardRow>
 
       <CardRow>
         <span>Rentabilidade 12 Meses:</span>
-        <span>{investmentData.profitabilities?.month}</span>
+        <span>{formatNumber(investmentData.profitabilities?.month, 100)}</span>
       </CardRow>
 
       <CardRow className="show-for-large-only">
         <span />
-        <span>{investmentData.profitabilities?.year}</span>
+        <span>{formatNumber(investmentData.profitabilities?.year, 100)}</span>
       </CardRow>
 
       <CardRow className="show-for-large-only">
         <span />
-        <span>{investmentData.profitabilities?.m12}</span>
+        <span>{formatNumber(investmentData.profitabilities?.m12, 100)}</span>
       </CardRow>
 
       <CardRow>
         <span>Aplicação Mínima:</span>
         <span>
-          {investmentData.operability?.minimum_initial_application_amount}
+          {formatNumber(
+            investmentData.operability?.minimum_initial_application_amount,
+          )}
         </span>
       </CardRow>
 
