@@ -10,8 +10,10 @@ const formatNumber = (value: string | number, multiply = 1): string => {
   const timesHundred = toNumber * multiply;
 
   const formatedNumber = new Intl.NumberFormat('pt-BR', {
-    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
   }).format(timesHundred);
+
+  console.log(formatedNumber);
 
   return formatedNumber;
 };
