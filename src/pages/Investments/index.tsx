@@ -53,14 +53,10 @@ const Investments: React.FC = () => {
   const applyFilter = useCallback(() => {
     let filteredItems = investments;
 
-    console.log(filteredItems);
-    console.log(searchFields);
-
     if (searchFields.searchedInputs.length > 0) {
       filteredItems = filteredItems.filter(item =>
         stringIsEqual(item.simple_name, searchFields.searchedInputs),
       );
-      console.log('filtrou busca');
     }
 
     if (searchFields.risk !== 0) {
@@ -68,11 +64,7 @@ const Investments: React.FC = () => {
         const risk = item.specification?.fund_risk_profile?.score_range_order;
         return riskIsEqual(risk, searchFields.risk);
       });
-      console.log('filtrou risk');
     }
-
-    console.log(`depois:`);
-    console.log(filteredItems);
 
     setFilteredInvestment(filteredItems);
   }, [investments, searchFields]);
