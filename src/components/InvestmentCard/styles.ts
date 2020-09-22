@@ -115,7 +115,7 @@ export const Container = styled.div`
 `;
 
 export const CardRow = styled.div`
-  display: flex !important;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
